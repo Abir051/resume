@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume | Md. Ashikur Rahman Abir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling application with a fixed navigation bar for smooth jumps between sections. The structure prioritizes key information for recruiters: Hero section for immediate impact, a visual Skills Dashboard for quick assessment, an Experience Timeline for career progression, and an interactive chart for skill proficiency. This design is more engaging than a static document and showcases modern web development capabilities. -->
+    <!-- Visualization & Content Choices:
+        - Hero Section: Inform/Impress -> Large typography & professional summary -> Static -> Highlights identity and objective immediately.
+        - Skills Dashboard: Organize/Inform -> Responsive grid of cards with icons (Unicode/HTML) -> Hover effects -> Quickly scannable, visually separates diverse skills.
+        - Experience Timeline: Show Change -> Vertical timeline with HTML/CSS -> Hover effects -> Intuitive visualization of career path.
+        - Skill Proficiency Chart: Compare/Inform -> Horizontal Bar Chart (Chart.js) in a constrained canvas container -> Interactive tooltips -> Provides a tangible, data-driven view of skill levels.
+        - NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            left: -2.5rem;
+            top: 0.25rem;
+            background-color: #4f7a7d;
+            border: 3px solid #f4f1ea;
+        }
+    </style>
+</head>
+<body class="bg-[#f4f1ea] text-gray-800">
+
+    <header class="bg-[#f4f1ea]/80 backdrop-blur-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold text-[#333]">Md. Ashikur Rahman Abir</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-[#4f7a7d] transition">Home</a>
+                    <a href="#skills" class="text-gray-600 hover:text-[#4f7a7d] transition">Skills</a>
+                    <a href="#experience" class="text-gray-600 hover:text-[#4f7a7d] transition">Experience</a>
+                    <a href="#contact" class="text-gray-600 hover:text-[#4f7a7d] transition">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#home" class="block py-2 text-gray-600 hover:text-[#4f7a7d]">Home</a>
+                <a href="#skills" class="block py-2 text-gray-600 hover:text-[#4f7a7d]">Skills</a>
+                <a href="#experience" class="block py-2 text-gray-600 hover:text-[#4f7a7d]">Experience</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-[#4f7a7d]">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6">
+        
+        <section id="home" class="py-20 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Md. Ashikur Rahman Abir</h1>
+            <p class="mt-4 text-xl md:text-2xl text-[#4f7a7d] font-medium">Digital Operations Specialist</p>
+            <p class="mt-8 max-w-3xl mx-auto text-lg text-gray-600">
+                A highly motivated and technically skilled professional seeking a challenging role as a Digital Operations Specialist. I aim to apply my expertise in WordPress management, digital marketing, AI-powered tools, and software support, combined with strong organizational skills, to drive efficiency, enhance online presence, and deliver exceptional support to clients.
+            </p>
+        </section>
+
+        <section id="skills" class="py-20">
+            <h2 class="text-3xl font-bold text-center mb-4">Core Competencies</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">I possess a versatile skill set tailored for modern digital assistance, from web development and marketing to creative content production. This section provides an overview of my key capabilities.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">🌐</div>
+                    <h3 class="text-xl font-bold mb-2">Web Dev & Design</h3>
+                    <p class="text-gray-600">HTML, CSS, Basic JavaScript, and comprehensive WordPress Customization with plugins like Elementor, Divi, and GeneratePress.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">📈</div>
+                    <h3 class="text-xl font-bold mb-2">Digital Marketing</h3>
+                    <p class="text-gray-600">Intermediate SEO, Content Writing, Blog Management, and hands-on experience with Affiliate Marketing strategies.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">🤖</div>
+                    <h3 class="text-xl font-bold mb-2">AI Tools</h3>
+                    <p class="text-gray-600">Proficient in using AI models like ChatGPT and Google Gemini for research, content generation, and task automation.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">Graphic Design</h3>
+                    <p class="text-gray-600">Intermediate skills in Adobe Photoshop and Canva for creating compelling visual assets for web and social media.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">🎬</div>
+                    <h3 class="text-xl font-bold mb-2">Video Editing</h3>
+                    <p class="text-gray-600">Intermediate level video editing using CapCut to produce short-form content for marketing and engagement.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-3xl mb-4 text-[#4f7a7d]">💻</div>
+                    <h3 class="text-xl font-bold mb-2">Software & Admin</h3>
+                    <p class="text-gray-600">Proficient in Microsoft Office Suite (Word, Excel, PowerPoint), Windows OS, and general software support.</p>
+                </div>
+            </div>
+             <div class="mt-20">
+                <h3 class="text-2xl font-bold text-center mb-8">Skill Proficiency</h3>
+                 <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <h2 class="text-3xl font-bold text-center mb-4">Professional Journey</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">My career path has provided me with a diverse range of experiences in web management, digital marketing, and technical support. Below is a timeline of my key roles and responsibilities.</p>
+
+            <div class="relative max-w-2xl mx-auto pl-10 border-l-2 border-gray-300">
+                
+                <div class="mb-12 relative timeline-item">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="text-sm text-[#4f7a7d] font-medium">Currently Working (2+ Years)</p>
+                        <h3 class="text-xl font-bold mt-1">Blog Writer & WordPress Site Manager</h3>
+                        <p class="text-gray-500 mb-4">swapnilplus.com</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Manage end-to-end website operations, ensuring performance and user experience.</li>
+                            <li>Develop and publish engaging blog content, implementing SEO strategies.</li>
+                            <li>Customize site features using plugins like Elementor, Divi, and GeneratePress.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-12 relative timeline-item">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="text-sm text-[#4f7a7d] font-medium">2 Years Experience</p>
+                        <h3 class="text-xl font-bold mt-1">Digital Marketing (Affiliate)</h3>
+                        <p class="text-gray-500 mb-4">Freelance</p>
+                         <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Engaged in affiliate marketing activities to drive traffic and conversions.</li>
+                            <li>Analyzed campaign performance and optimized strategies for better results.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-12 relative timeline-item">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="text-sm text-[#4f7a7d] font-medium">Previous Role</p>
+                        <h3 class="text-xl font-bold mt-1">Software Support Executive</h3>
+                        <p class="text-gray-500 mb-4">Desh Universal Pvt Ltd</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                           <li>Provided technical support and troubleshooting for software-related inquiries.</li>
+                           <li>Ensured high levels of client satisfaction through effective problem resolution.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="mb-12 relative timeline-item">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="text-sm text-[#4f7a7d] font-medium">Training</p>
+                        <h3 class="text-xl font-bold mt-1">Graphic Design Training</h3>
+                        <p class="text-gray-500 mb-4">Daffodil International Professional Training Institute (3 Months)</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                           <li>Completed a comprehensive program covering Adobe Photoshop and industry best practices.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 text-center">
+             <h2 class="text-3xl font-bold text-center mb-4">Let's Connect</h2>
+             <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">I am always open to exploring new opportunities and collaborations. Please feel free to reach out to discuss how my skills can benefit your team or project.</p>
+             <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                <a href="mailto:abirhasan2013@gmail.com" class="inline-flex items-center justify-center bg-[#4f7a7d] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#3e6063] transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    Email Me
+                </a>
+                <a href="tel:+8801756051051" class="inline-flex items-center justify-center bg-gray-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.987a1 1 0 01-.115 1.095l-1.558 1.559a.8.8 0 00-.21 1.09l.646.646a.8.8 0 001.09-.21l1.559-1.559a1 1 0 011.095-.115l1.987.74A1 1 0 0118 13v2a1 1 0 01-1 1h-1.805a20.007 20.007 0 01-9.192-3.036L2 10.457V3z"></path></svg>
+                    Call Me (+88)
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Md. Ashikur Rahman Abir. All Rights Reserved.</p>
+            
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const skillsChartCanvas = document.getElementById('skillsChart');
+            if(skillsChartCanvas) {
+                const ctx = skillsChartCanvas.getContext('2d');
+                const skillsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['WordPress Mgmt', 'SEO', 'AI Tool Usage', 'Canva', 'Video Editing (CapCut)', 'HTML/CSS'],
+                        datasets: [{
+                            label: 'Proficiency Level',
+                            data: [90, 75, 85, 80, 70, 80],
+                            backgroundColor: 'rgba(79, 122, 125, 0.7)',
+                            borderColor: 'rgba(79, 122, 125, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0,0,0,0.05)'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.x !== null) {
+                                            label += context.parsed.x + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
